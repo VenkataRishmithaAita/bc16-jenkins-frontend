@@ -23,7 +23,8 @@ podTemplate(label: 'bc16', containers: [
 	git 'https://github.com/VenkataRishmithaAita/bc16-jenkins-frontend.git'
 	container('bc16-docker'){
 
-		sh 'docker build -t rishmitha/fe_jenkins .'
+		sh 'docker build -t rishmitha/fe_jenkins:latest .'
+		sh "docker tag rishmitha/fe_jenkins:latest rishmitha/fe_jenkins:${BUILD_NUMBER}"
 		sh 'docker images'
 
 	}
@@ -41,13 +42,15 @@ podTemplate(label: 'bc16', containers: [
 			echo USERNAME
 			echo "username is $USERNAME"
 			sh 'docker push rishmitha/fe_jenkins'
+		        sh 'docker push rishmitha/fe_jenkins:latest'
+			sh "docker push rishmitha/fe_jenkins:${BUILD_NUMBER}"
               
 				}
 			}
 		}
 		   stage ('BC16-GC') {
         	
-		    build job: 'bc16-r', parameters: [string(name: 'master', value: env.BRANCH_NAME)]
+		    build job: 'bc16-r', parameters: [string(name: 'fe_tag', value: BUILD_NUMBER)]
 	
         }
     
