@@ -61,7 +61,13 @@ podTemplate(label: 'bc16', containers: [
 // 		    build job: 'bc16-r', parameters: [string(name: 'be_version', value: env.BUILD_NUMBER)]
 // 	    }
 
+	    		   stage ('BC16-GC') {
+        	
+		    build job: 'bc16-r', parameters: [string(name: 'master', value: env.BRANCH_NAME)]
+	
+        }
     }
+	    
     }
 
 }
