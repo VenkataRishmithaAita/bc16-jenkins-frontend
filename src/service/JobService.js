@@ -1,4 +1,4 @@
-export const jobResource = `http://18.223.182.178:30897/api/v1/jobs`;
+export const jobResource = `http://localhost:8081/api/v1/jobs`;
 // const jobResource = `http://localhost:9000/jobs`;
 import axios from "axios";
 
