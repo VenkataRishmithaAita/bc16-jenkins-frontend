@@ -1,0 +1,6 @@
+version: "3"
+services: 
+  client: 
+    image: rishmitha/my-webapp-bc16-gc 
+    ports: 
+      - 8080:80 
