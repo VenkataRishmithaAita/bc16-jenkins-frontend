@@ -4,7 +4,7 @@ export const base=window.location.origin;
 import axios from "axios";
 
 export const getAllJobs = (reqParams, cb) => {
-  return axios(`${base}?${reqParams}`).then((res) => {
+  return axios(`${base}/api/v1/jobs?${reqParams}`).then((res) => {
     const result = res.data;
     cb(result);
   });
