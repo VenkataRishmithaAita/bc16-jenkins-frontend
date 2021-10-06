@@ -12,18 +12,18 @@ export const getAllJobs = (reqParams, cb) => {
 
 export const saveJob = (jobId, cb) => {
   return axios
-    .post(`${base}/${jobId}/save`, {
+    .post(`${base}/api/v1/jobs/${jobId}/save`, {
       jobId: jobId,
     })
     .then((res) => cb(res.data.id));
 };
 
 export const removeJob = (saveJobId) => {
-  return axios.delete(`${base}/saved/${saveJobId}`);
+  return axios.delete(`${base}/api/v1/jobs/saved/${saveJobId}`);
 };
 
 export const getAllSavedJobs = (cb) => {
-  return axios(`${base}/saved`).then((res) => {
+  return axios(`${base}/api/v1/jobs/saved`).then((res) => {
     const savedJobsId = res.map((item) => item.id);
     cb(savedJobsId);
   });
